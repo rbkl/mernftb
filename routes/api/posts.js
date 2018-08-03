@@ -155,9 +155,8 @@ router.post('/comment/:post_id', passport.authenticate('jwt', { session: false }
     post.save()
     .then(post => res.json(post))
     .catch(err => res.status(404).json({ postnotfound: 'No post found'}));
-
   })
-})
+});
 
 
 // @route   DELETE api/posts/comment/:post_id/:comment_id
@@ -172,6 +171,7 @@ router.delete('/comment/:post_id/:comment_id', passport.authenticate('jwt', { se
       return res.status(404).json({ commentnotexist: 'Comment does not exist'})
     }
 
+
     // Get remove index
     const removeIndex = post.comments
     .map(comment => comment._id.toString())
@@ -184,10 +184,9 @@ router.delete('/comment/:post_id/:comment_id', passport.authenticate('jwt', { se
     // Save the posts
     post.save()
     .then(post => res.json(post))
+    .catch(err => res.status(404).json({ postnotfound: 'No post found'}));
   })
-  .catch(err => res.status(404).json({ postnotfound: 'No post found'}));
 });
-
 
 
 module.exports = router;
