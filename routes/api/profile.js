@@ -53,7 +53,7 @@ const errors = {};
 
     res.json(profiles);
   })
-  .catch(err => res.status(404).json({profile: 'There are no profiles'}));
+  .catch(err => res.status(404).json({profiles: 'There are no profiles'}));
 });
 
 
