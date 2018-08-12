@@ -10,12 +10,15 @@ const posts = require('./routes/api/posts');
 
 const app = express();
 
+
+require('npm/node_modules/dotenv').config();
+
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // DB Config
-const db = require('./config/keys').mongoURI;
+const db = process.env.MONGO_URI;
 
 // Connect to MongoDB
 mongoose
